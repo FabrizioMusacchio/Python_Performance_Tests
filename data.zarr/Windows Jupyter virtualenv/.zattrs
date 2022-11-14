@@ -1,0 +1,6 @@
+{
+    "N_rep": 10,
+    "OS": "Windows",
+    "editor": "Jupyter",
+    "venv": "virtualenv"
+}
