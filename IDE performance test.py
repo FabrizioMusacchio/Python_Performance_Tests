@@ -61,8 +61,8 @@ except:
     pass
 # %% SET PARAMETERS
 OS          = "macOS" # macOS Windows Linux
-editor_n    = 2 # choose the editor# from the list below
-venv_n      = 2 # choose venv form the list below
+editor_n    = 1 # choose the editor# from the list below
+venv_n      = 1 # choose venv form the list below
 N_rep       = 10 # Number of repetitions
 #                          0                    1               2         3
 editor_list = ["VS Code (interactive)","VS Code (terminal)","PyCharm","Jupyter"]
