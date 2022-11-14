@@ -1,0 +1,6 @@
+{
+    "N_rep": 10,
+    "OS": "macOS",
+    "editor": "VS Code (interactive)",
+    "venv": "conda"
+}
