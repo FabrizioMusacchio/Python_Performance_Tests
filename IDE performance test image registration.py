@@ -18,7 +18,7 @@ import zarr
 # %% PARAMETERS
 OS          = "macOS" # macOS Windows Linux
 editor_n    = 1 # choose the editor# from the list below
-venv_n      = 1 # choose venv form the list below
+venv_n      = 2 # choose venv form the list below
 N_rep       = 10 # Number of repetitions
 #                          0                     1               2         3
 editor_list = ["VS Code (interactive)","VS Code (terminal)","PyCharm","Jupyter"]
@@ -71,7 +71,7 @@ for layer in range(1,layers):
 times_regs = []
 for rep in range(N_rep):
     Process_t0 = time.time()
-    print(f"iteration: {rep}")
+    print(f"iteration: {rep}", end="")
     image_stack_reg = np.zeros((layers, image.shape[0], image.shape[1]))
     shifts_detected = np.zeros((layers, 2))
     pearson_R       = np.zeros(layers)
@@ -87,13 +87,15 @@ for rep in range(N_rep):
                                                  image_stack_reg[layer, 100:-100,100:-100].flatten())[0]
     Process_t1 = calc_process_time(Process_t0, leadspaces=f"{N_rep} reps: ", 
                                     output=True, unit="sec", verbose=False)
+    print(f" ({Process_t1} s)")
     times_regs.append(Process_t1)                         
 print(f"average processing time: {np.mean(times_regs)} ± {np.std(times_regs)} s")
 # %% WRITE THE RESULTS INTO THE ZARR COLLECTOR FILE
 zarr_out_reg = zarr_curr_group.create_dataset("registration_test", data=times_regs,
                                               chunks=False, overwrite=True)
-
-""" plt.imshow(image_stack_reg[1])
+# %% CTRL PLOTS
+""" 
+plt.imshow(image_stack_reg[1])
 plt.imshow(image_stack[1])
 plt.imshow(image)
 plt.imshow(image*(image_stack_reg[1]), cmap='gray')

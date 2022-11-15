@@ -10,15 +10,15 @@ https://www.python.org/downloads/release/python-3106/
 
 conda create -n python_performance_tests_conda python=3.10.6
 conda activate python_performance_tests_conda
-conda install -y matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab
+conda install -y matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch
 
 python -m venv python_performance_tests_py
 source python_performance_tests_py/bin/activate
-pip install matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab
+pip install matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch
 
 python -m virtualenv python_performance_tests_py2
 source python_performance_tests_py2/bin/activate
-pip install matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab
+pip install matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch
 """
 # %% IMPORTS (ESSENTIAL)
 import time
@@ -60,9 +60,9 @@ try:
 except:
     pass
 # %% SET PARAMETERS
-OS          = "Windows" # macOS Windows Linux
-editor_n    = 2 # choose the editor# from the list below
-venv_n      = 2 # choose venv form the list below
+OS          = "macOS" # macOS Windows Linux
+editor_n    = 1 # choose the editor# from the list below
+venv_n      = 0 # choose venv form the list below
 N_rep       = 10 # Number of repetitions
 #                          0                     1               2         3
 editor_list = ["VS Code (interactive)","VS Code (terminal)","PyCharm","Jupyter"]
@@ -213,7 +213,7 @@ zarr_out_trans.attrs["N"] = N
 plot_1D_series(times=times_allocate_mean[0, :], y=times_allocate_mean[1, :], 
                y_err=times_allocate_std[1, :], figsize=(5,4.5), 
                xlim=(0,2050), xticks=np.arange(0,2001,250), 
-               ylim=(0,0.045), yticks=np.arange(0,0.046,0.002),
+               ylim=(0,0.020), yticks=np.arange(0,0.021,0.002),
                title=f"Average time for allocating and\ntransposing an $N \\times N$ array ({N_rep} reps)",
                test="transposing", OS=OS, editor=editor, venv=venv)
 
