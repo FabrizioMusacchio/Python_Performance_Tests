@@ -1,0 +1,6 @@
+{
+    "N_rep": 10,
+    "OS": "Linux",
+    "editor": "VS Code (terminal)",
+    "venv": "python"
+}

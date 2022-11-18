@@ -6,7 +6,20 @@ date: 2022, Nov 2
 
 for testing, create a virtual environment with conda:
 
+Please, install Python 3.10.6:
+
+macOS/Windows:
 https://www.python.org/downloads/release/python-3106/
+
+Linux:
+sudo apt-get install libssl-dev openssl make gcc
+wget https://www.python.org/ftp/python/3.10.6/Python-3.10.6.tgz
+tar xzvf Python-3.10.6.tgz
+cd Python-3.10.6
+./configure
+make
+sudo make install
+python3.10 --version
 
 conda create -n python_performance_tests_conda python=3.10.6
 conda activate python_performance_tests_conda
@@ -60,9 +73,9 @@ try:
 except:
     pass
 # %% SET PARAMETERS
-OS          = "macOS" # macOS Windows Linux
-editor_n    = 1 # choose the editor# from the list below
-venv_n      = 0 # choose venv form the list below
+OS          = "Linux" # macOS Windows Linux
+editor_n    = 2 # choose the editor# from the list below
+venv_n      = 2 # choose venv form the list below
 N_rep       = 10 # Number of repetitions
 #                          0                     1               2         3
 editor_list = ["VS Code (interactive)","VS Code (terminal)","PyCharm","Jupyter"]
@@ -182,7 +195,7 @@ plot_1D_series(times=times_exp_mean[0, :], y=times_exp_mean[1, :],
 plot_1D_series(times=times_exp_mean[0, :], y=times_exp_mean[2, :],
                y_err=times_exp_std[2, :], figsize=(6,3.5),
                xlim=(0,N+50), xticks=np.arange(0,N+1,20000),
-               ylim=(0,0.23), yticks=np.arange(0,0.24,0.02),
+               ylim=(0,0.40), yticks=np.arange(0,0.41,0.05),
                title=f"Average cumulative time for calculating $e^N$ ({N_rep} reps)",
                test="exponentiation (cumulative)", OS=OS, editor=editor, venv=venv)
 # %% NUMPY ALLOCATE ARRAY MEMORY AND TRANSPOSE
@@ -213,7 +226,7 @@ zarr_out_trans.attrs["N"] = N
 plot_1D_series(times=times_allocate_mean[0, :], y=times_allocate_mean[1, :], 
                y_err=times_allocate_std[1, :], figsize=(5,4.5), 
                xlim=(0,2050), xticks=np.arange(0,2001,250), 
-               ylim=(0,0.020), yticks=np.arange(0,0.021,0.002),
+               ylim=(0,0.025), yticks=np.arange(0,0.023,0.003),
                title=f"Average time for allocating and\ntransposing an $N \\times N$ array ({N_rep} reps)",
                test="transposing", OS=OS, editor=editor, venv=venv)
 
