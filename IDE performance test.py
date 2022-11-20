@@ -23,15 +23,15 @@ python3.10 --version
 
 conda create -n python_performance_tests_conda python=3.10.6
 conda activate python_performance_tests_conda
-conda install -y matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch
+conda install -y matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch pingouin
 
 python -m venv python_performance_tests_py
 source python_performance_tests_py/bin/activate
-pip install matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch
+pip install matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch pingouin
 
 python -m virtualenv python_performance_tests_py2
 source python_performance_tests_py2/bin/activate
-pip install matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch
+pip install matplotlib numpy seaborn pandas zarr numcodecs plotly scikit-image scipy ipykernel jupyter notebook jupyterlab pooch pingouin
 """
 # %% IMPORTS (ESSENTIAL)
 import time
@@ -68,10 +68,10 @@ try:
     os.mkdir("plots")
 except:
     pass
-try:
+""" try:
     os.mkdir("plots/png")
 except:
-    pass
+    pass """
 # %% SET PARAMETERS
 OS          = "Linux" # macOS Windows Linux
 editor_n    = 2 # choose the editor# from the list below
@@ -160,7 +160,7 @@ def plot_1D_series(times, y, y_err, figsize=(5,3.5), xlim=(0,1),ylim=(0,1),
     plt.yticks(yticks,fontsize=12)
     plt.tight_layout()
     plt.savefig("plots/"+test+" "+OS+" "+venv+" "+editor+".pdf")
-    plt.savefig("plots/png/"+test+" "+OS+" "+venv+" "+editor+".png", dpi=200)
+    #plt.savefig("plots/png/"+test+" "+OS+" "+venv+" "+editor+".png", dpi=200)
     if show_plot:
         plt.show()
 # %% NUMPY EXPONENTIAL FUNCTION
