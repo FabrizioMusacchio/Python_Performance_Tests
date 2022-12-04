@@ -4,3 +4,6 @@ python_performance_tests_py2/
 .ipynb_checkpoints/
 .idea/
 Python_performance.afdesign
+plots/
+figures/
+plots_copy/
